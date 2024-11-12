@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Team | Corelink</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="GravCMS" />
+    <meta name="description" content="Corelink real-time framework" />
+
+    <link rel="icon" type="image/png" href="/user/themes/corelink-adapted-theme/images/favicon.png" />
+    <link rel="canonical" href="https://corelink.hpc.nyu.edu/about-us/team" />
+
+                        
+            
+    <link href="/user/plugins/diagrams/css/mermaid.css" type="text/css" rel="stylesheet">
+<link href="/user/plugins/markdown-notices/assets/notices.css" type="text/css" rel="stylesheet">
+<link href="/user/plugins/form/assets/form-styles.css" type="text/css" rel="stylesheet">
+<link href="/user/plugins/youtube/css/youtube.css" type="text/css" rel="stylesheet">
+<link href="/user/plugins/login/css/login.css" type="text/css" rel="stylesheet">
+<link href="/user/themes/quark/css-compiled/spectre.min.css" type="text/css" rel="stylesheet">
+<link href="/user/themes/quark/css-compiled/theme.min.css" type="text/css" rel="stylesheet">
+<link href="/user/themes/quark/css/custom.css" type="text/css" rel="stylesheet">
+<link href="/user/themes/quark/css/line-awesome.min.css" type="text/css" rel="stylesheet">
+<style>
+table, td, th {
+  border: 1px solid #DDDDDD;
+  border-collapse: collapse;
+  padding:5px;
+  vertical-align: top;
+  word-wrap:break-word;
+  table-layout:fixed;
+  width: 100%
+}
+th {
+    background-color: #DDDDDD
+}
+tr:hover {
+   background-color: #ffff99;
+}
+
+h5 {
+    margin-top:15px;
+}
+
+.image-left {
+    float: left;
+    vertical-align: top;
+    margin: 7px 20px 20px 0px;
+}
+</style>
+
+    <script src="/assets/a018ad80f7c589bc0d309c3556944726.js"></script>
+<script>
+$(document).ready(function() {
+                    mermaid.initialize({startOnLoad:true});
+                    mermaid.ganttConfig = {
+                      axisFormatter: [["%d-%m-%Y", function (d){return d.getDay() == 1;}]]
+                    };
+
+                    $(".diagram").sequenceDiagram({theme: 'simple'});
+
+                    var parent = document.getElementsByClassName("flow");
+                    for(var i=0;i<parent.length;i++) {
+                        var data = parent[i].innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+                        parent[i].innerHTML = "";
+                        var chart = flowchart.parse(data);
+                        chart.drawSVG('canvas_'+i, {
+                            'font-size': 14,
+                            'font-color': 'black',
+                            'line-color': 'black',
+                            'element-color': 'black',
+                            'yes-text': 'yes',
+                            'no-text': 'no',
+
+                            // More informations : http://flowchart.js.org
+                            'flowstate' : {
+                                'simple': {'fill' : '#FFFFFF'},
+                                'positive': {'fill' : '#387EF5'},
+                                'success': { 'fill' : '#9FF781'},
+                                'invalid': {'fill' : '#FA8258'},
+                                'calm': {'fill' : '#11C1F3'},
+                                'royal': {'fill' : '#CF86E9'},
+                                'energized': {'fill' : 'F3FD60'},
+                            }
+                        });
+                    }
+                 });
+</script>
+
+</head>
+<body id="top" class=" header-fixed header-animated sticky-footer">
+    <div id="page-wrapper">
+            <section id="header" class="section">
+            <section class="container grid-lg">
+                <nav class="navbar">
+                    <section class="navbar-section logo">
+                        <a href="/" class="navbar-brand mr-10">
+    <img src="/user/themes/corelink-adapted-theme/images/logo/Logo.svg" alt="Corelink" />
+</a>                    </section>
+                    <section class="navbar-section desktop-menu">
+
+                        <nav class="dropmenu animated">
+                                                    
+<ul >
+                <li>
+      <a href="/" class="">
+        Home
+      </a>
+          </li>
+          <li>
+      <a href="/examples" class="">
+        Examples
+      </a>
+          </li>
+          <li>
+      <a href="/documentation" class="">
+        Documentation
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/technical-overview" class="">
+        Technical Overview
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/client-documentation" class="">
+        Client Documentation
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/server-documentation" class="">
+        Server Documentations
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/server-documentation/client-initiated-control-functions" class="">
+        Client Initiated Control Functions
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/server-documentation/server-initiated-control-functions" class="">
+        Server Initiated Control Functions
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/documentation/plugins" class="">
+        Corelink Plugins
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/protocol-documentation" class="">
+        Protocol Documentation
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/protocol-documentation/control-stream-protocol" class="">
+        Control Stream Protocol
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/protocol-documentation/data-stream-protocol" class="">
+        Data Stream Protocol
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/next-steps" class="">
+        Next Steps
+      </a>
+            <ul>
+                    <li>
+      <a href="/next-steps/get-started" class="">
+        Get Started
+      </a>
+          </li>
+          <li>
+      <a href="/next-steps/contributing-to-corelink" class="">
+        Contributing to Corelink
+      </a>
+          </li>
+          <li>
+      <a href="/next-steps/naming-convention-guidelines" class="">
+        Naming Convention Guidelines
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/about-us" class="active">
+        About Us
+      </a>
+            <ul>
+                    <li>
+      <a href="/about-us/team" class="active">
+        Team
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/collaborators" class="">
+        Collaborators
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/support" class="">
+        Support
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/contact-us" class="">
+        Contact Us
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+  
+</ul>
+
+                                                </nav>
+
+                        
+                    </section>
+                </nav>
+            </section>
+        </section>
+        <div class="mobile-menu">
+            <div class="button_container" id="toggle">
+                <span class="top"></span>
+                <span class="middle"></span>
+                <span class="bottom"></span>
+            </div>
+        </div>
+    
+    
+        <section id="start">
+                    <section id="body-wrapper" class="section">
+                <section class="container grid-lg">
+                                            
+                                            <h3>The Corelink Team</h3>
+<h5>Robert Pahle</h5>
+<p><img alt="Robert Pahle" class="image-left" src="/images/7/5/c/6/9/75c69c7cc0a1a01c007ec931cc8b26e4582cc456-rpahle-sm.jpg" /> Dr. Pahle is a senior research scientist at NYU Research Technology. His focus areas are on computer mediated reality infrastructure and applications. Among other things he works on the development of NYU's new High Speed Research Network.</p>
+<p>Previously he worked at Arizona State Univerity where he was the technical director for the decision theater and later faculty in geography within the GeoDa center. One of his significant milestones in technology development has been the creation of an innovative framework - ChainBuilder - which is capable of integrating disparate models and simulations to holostically interact with and visualize them. In addition, he worked with GIS databases and the parallelization of GIS analytics.</p>
+<p style="clear:both;"></p>
+<h5>Daniel Braunstein</h5>
+<p><img alt="Daniel Braunstein" class="image-left" src="/images/2/c/6/7/c/2c67c5fb2750b3f0117bca0cf87899d96c0a3cce-dan.jpg" /> Daniel Braunstein is a graduate student in NYU Steinhardt’s Music Technology program, focused on spatial audio approaches and techniques for XR platforms, integrating his past experience in the games industry in order to bridge the gap between emerging research and practical end-user experience. His current thesis work aims to pioneer and quantify audio-based solutions for “Zoom fatigue”, across a variety of virtual environments and user interfaces.</p>
+<p>As part of the Corelink and Holodeck teams, Daniel works on extending the existing audio capabilities of Corelink for the C++, Unity, and Unreal clients; plugin development and architecture design; and latency benchmarking against existing Audio-over-IP solutions towards real-time distributed music performance across the NYU campuses.</p>
+<p style="clear:both;"></p>
+<h5>Badri Gujjula</h5>
+<p><img alt="Badri Gujjula" class="image-left" src="/user/pages/05.about-us/01.team/no-user-image.gif?cropZoom=200,200" /></p>
+<p style="clear:both;"></p>
+<h5>Sarthak Tickoo</h5>
+<p><img alt="Sarthak Tickoo" class="image-left" src="/images/c/d/0/b/e/cd0be7b5963304ba6b427e62811662db5fdf1c12-polish20210803021238073.jpg" /> Sarthak is a master's student at NYU Tandon's Computer Engineering department, with his primary focus areas being robotics and control and all the allied fields in continuation of his undergraduate involvement with competitive and robotics research and embedded devices. Before joining NYU, he worked as a senior developer with BNP Paribas working on sub-millisecond distributed trading systems, front-end systems, NLP-based chatbots, and large-scale storage and database systems. His eventual goal is to work on robotics and hardware-software systems in manufacturing and healthcare domains and making technology accessible, efficient, and affordable.</p>
+<p>As a part of Corelink, his primary responsibility is the development of the Cpp client and components. In addition to this, he also contributes to overall Corelink system design and architecture and helping with plugin and server platforms, the Corelink component &amp; technology stack to improve resilience, scalability, efficiency, and system and component modularization. Given his past industry experience, he is also helping to better process efficiency, and formalizing the development process by enabling people to use all tools to their maximum potential is also a part of his role.</p>
+<p>Outside of work and academics, he enjoys teaching people of all age groups about mathematics, physics, and computer technologies. Accused of being a coffee fiend, he has an unhealthy investment in music streaming services, cooking, cycling, and other activities.</p>
+<p style="clear:both;"></p>
+<h5>Sachin Iyer</h5>
+<p><img alt="Sachin Iyer" class="image-left" src="/images/4/6/2/f/7/462f7d3fa628303521c4f816b20ed5518822ca34-profile.jpg" /> Sachin Iyer is an Undergraduate Student at Tandon School of Engineering completing his Bachelor's in Computer Science. His major technological interests include (although they are ever changing) distributed systems, technological privacy, and intuitive user experiences. For Corelink, he manages and orchestrates the VIP teams, engineers audio solutions, and is involved with Corelink's general architecture.</p>
+<p>He is also obsessed with his emacs environment, spending way more time on it than he should. He is also interested in cloud technologies, striving to pinch every penny possible. In addition, he has been getting more into blockchains, thinking that it might pave the way for a more private future.</p>
+<p>Outside of Technology, he is very interested in Jazz, participating in numerous big bands throughout high school including the Stanford Miles Ahead Jazz Orchestra, and still keeps up his trombone skills and works on his electronic music whenever possible.</p>
+<p style="clear:both;"></p>
+<h5>Steven Yoo</h5>
+<p><img alt="Steven Yoo" class="image-left" src="/images/9/6/c/a/5/96ca585d11eeec915854448d4f836825046ed9e5-steven.jpg" />
+Steven Yoo is a research assistant and software developer at NYU CREATE and NYU Future Reality Lab. His focus areas include human-computer interaction, accessibility, biometric, and virtual reality. </p>
+<p>As part of the Corelink and Holodeck teams, Steven works on developing applications to render real-time biometric sensor modules and handling the network infrastructure/storage design on the various platforms, such as web browsers and in the VR environment. </p>
+<p>Outside of his work, Steven is a game developer and taught high school game development courses for 3 years.</p>
+<p style="clear:both;"></p>
+<h4>Past Team Members:</h4>
+<h5>Avik Gomes</h5>
+<p><img alt="Avik Gomes" class="image-left" src="/user/pages/05.about-us/01.team/no-user-image.gif?cropZoom=200,200" /></p>
+<p style="clear:both;"></p>
+<h5>Charles Chan</h5>
+<p><img alt="Charles Chan" class="image-left" src="/images/8/0/9/3/4/809349a6759ecb374065078851c0bdeaeb7aa17f-20200214160236.jpg" /> Charles Chan is a Computer Science major in my junior year. I expect to graduate in May 2021 with my BS degree. He is a member of the NYU robotics design team, handling the communication between the controller and the robot. His work at NYU IT focuses on the development of the client-side networking library for the high-performance computing research network.</p>
+<p style="clear:both;"></p>
+<h5>Abhishek Khanna</h5>
+<p><img alt="Abhishek Khanna" class="image-left" src="/images/3/a/3/f/f/3a3ff88f7a789a621fc9305e4631176c4310408d-abhishekkhanna.jpg" /> Abhishek Khanna is a Research Assistant @NYU IT and masters student @NYU Computer Science department. He started working for Corelink Project from 2020-2021  primarily  adding new functionality to core server and client in Javascript. He is also responsible for a lot of features of the server including the structure of Access controls, Vue Frontend, deploying and adherence to the linting for the project.
+Apart from his work , he has interest in researching and brainstorming about new technologies, listening to music.</p>
+<p style="clear:both;"></p>
+<h5>Raj Uttam</h5>
+<p><img alt="Raj Uttam" class="image-left" src="/images/3/2/9/7/3/3297385eb15b9b054994d268dd9feea3fda0373d-raj1.jpeg" /> Raj Uttam is a graduate student majoring in Computer Science at NYU. His area of interest includes big data and machine learning. During his time at New York University's High-Performance Computing Center, he worked as a software and data engineering research assistant, he developed a framework by writing ETL pipelines using Kafka and ELK to effectively analyze network data generated by Corelight and Zeek. Additionally, as a big data instructor, he tutored students’ to effectively utilize the NYU HPC cluster resources and solve problems using big data frameworks.</p>
+<p>As part of the corelink team, he assisted in writing the python client library, developed applications to transmit real-time sensor data using the corelink C++ library, and built dashboards to visualize sensor data from multiple streams using the JavaScript library. In his free time, Raj likes to play Valorant.</p>
+<p style="clear:both;"></p>
+<h5>Aparna Ramakrishnan</h5>
+<p><img alt="Aparna Ramakrishnan" class="image-left" src="/images/e/d/c/7/3/edc73a619c30226b2661f1a5046587dbe9096cb2-photo.jpg" /> Aparna is a graduate student majoring in the IDM program at NYU. She works on the Holodeck project in researching ways to augment AR/VR interactions. Aparna works at the NYU Future Reality Lab in designing interactions for AR/VR environments and has been working with the Corelink team in utilizing the network to render real-time sensor interactions on the browser and in the VR space and in documenting the processes to help her research impact people at scale. She owns a patent for the design of an Intelligent Head-Up Display and her works have been cited in various HCI Journals and Conferences. Apart from her research and academics, she is a motorcycle rider and loves to sketch during her free time.</p>
+<p style="clear:both;"></p>
+<h5>Michael Lukiman</h5>
+<p><img alt="Michael Lukiman" class="image-left" src="/images/6/d/4/d/9/6d4d9e4f5dec8b1f47b69a6962aacf8c72fcdd13-michaellukiman.png" /> Michael Lukiman is a Full-Stack Software Engineer who worked with Corelink from 2017-2019 during his time at New York University's High Performance Computing Center. He is proud of the work he did spawning processes for cross-platform use of the library, and carries the lessons of real-time, global, &amp; multiagent data streams with him across aspects of career and personal life.</p>
+<p style="clear:both;"></p>
+<h5>Cindy Bui, Holodeck Engineer</h5>
+<p><img alt="Cindy Bui" class="image-left" src="/images/1/9/8/5/7/19857da3200abb6c6b19f5153fc67ff305555ed6-cindyheadshot.jpg" /> Cindy Bui is a Holodeck engineer who worked on Corelink from 2019-2020. She spearheaded the Holodeck concert in March 2020, later moving onto Corelink development and adding several more applications and examples to Corelink. Her work on Corelink includes Infinite, web audio streaming, the C# unity library, C++ audio streaming, video browser streaming, and documentation. She is a music technologist with a focus on audio programming, GPU acceleration, and system integration - and as a musician/classical percussionist on the side.</p>
+<p style="clear:both;"></p>
+<h5>Iqra Shaikh</h5>
+<p><img alt="Iqra Shaikh" class="image-left" src="/images/8/a/1/9/4/8a19424d4daf27f1d6a80e1f3ced10180a8bb563-linkedinpicture.png" /> Iqra Shaikh is a Computer Engineering graduate student at NYU. She worked on the Python development as well as the documentation of Corelink. Her interest areas include Software Development, Web Development and Data Visualization. She is  a Forbes Under 30 student scholar. She is also a passionate women’s rights advocate.</p>
+<p style="clear:both;"></p>
+<h4>Ted Wong (Hechun Wang)</h4>
+<p><img alt="Ted Wong" class="image-left" src="/images/4/3/1/3/a/4313ad4d5ea12366b8f7d6d14b7be820a14fe1df-headshot.jpg" /> Ted is a Computer Science graduate student in NYU. He is the full stack developer working on webwork integration for this project. He is skilled in node js, big data processing, network security and react development. Ted enjoys learning new things both on and off the job. He can speak 3 languages professionally(Chinese, English, Japanese) and is learning German as a fourth!</p>
+<p style="clear:both;"></p>
+
+                </section>
+            </section>
+                </section>
+
+    </div>
+
+            <section id="footer" class="section bg-gray">
+    <section class="container grid-lg">
+        <p><a href="https://corelink.hpc.nyu.edu/">Corelink</a> - Real Time Networking for Research.</p>
+    </section>
+</section>
+    
+        <div class="mobile-container">
+        <div class="overlay" id="overlay">
+            <div class="mobile-logo">
+                <a href="/" class="navbar-brand mr-10">
+  <svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" viewBox="0 0 504 140" clip-rule="evenodd"><path d="M235.83 71.56h-7.98c-1.2 0-2.2 1-2.2 2.2V89.1l-.15.13c-4.7 3.96-10.64 6.14-16.72 6.14-14.36 0-26.04-11.68-26.04-26.04s11.68-26.04 26.04-26.04c5.58 0 10.92 1.76 15.44 5.1.87.66 2.1.57 2.86-.2l5.7-5.7c.44-.44.67-1.05.63-1.68-.02-.62-.32-1.2-.82-1.6-6.76-5.35-15.2-8.3-23.8-8.3-21.18 0-38.42 17.23-38.42 38.4 0 21.2 17.24 38.42 38.42 38.42 10.93 0 21.4-4.7 28.7-12.9.35-.4.55-.93.55-1.47v-19.6c0-1.22-.98-2.2-2.2-2.2M502.8 34.44c-.4-.6-1.1-.98-1.84-.98h-8.7c-.87 0-1.66.52-2 1.32l-24.5 56.84-24.9-56.85c-.36-.8-1.15-1.3-2.02-1.3h-8.72c-.74 0-1.44.36-1.84.98-.4.62-.48 1.4-.17 2.1l30.2 68.85c.34.8 1.13 1.32 2 1.32h11c.88 0 1.67-.53 2.02-1.33l29.66-68.87c.3-.68.22-1.47-.2-2.1"/><path d="M388.68 34.77c-.35-.8-1.14-1.32-2-1.32h-11c-.88 0-1.67.53-2.02 1.33L344 103.64c-.3.68-.22 1.47.18 2.08.4.62 1.1 1 1.84 1h8.7c.86 0 1.66-.53 2-1.33l24.5-56.86 24.9 56.86c.36.8 1.15 1.32 2.02 1.32h8.72c.74 0 1.44-.38 1.84-1 .4-.62.47-1.4.17-2.1l-30.2-68.85zM309.2 81.52l.47-.22c8.68-4.2 14.28-13.1 14.28-22.67 0-13.88-11.3-25.18-25.17-25.18H266.9c-1.2 0-2.2 1-2.2 2.2v68.86c0 1.23 1 2.22 2.2 2.22h8c1.2 0 2.2-1 2.2-2.2V45.8h21.68c7.05 0 12.8 5.75 12.8 12.8 0 5.9-4 11-9.73 12.42-1.04.26-2.07.4-3.07.4h-7.98c-.83 0-1.6.46-1.96 1.2-.38.73-.3 1.62.2 2.3l22.6 30.87c.42.58 1.08.92 1.78.92h9.9c.84 0 1.6-.47 1.97-1.2.37-.75.3-1.64-.2-2.3l-15.9-21.7zM107.2 80.97c-7.26-4.8-11.4-8.85-15.02-16.1-2.47 4.97-8.24 12.37-17.96 18.2-4.86 15.1-27.96 44-35.43 39.9-2.22-1.2-2.64-2.8-2.15-4.45.54-4.13 9.08-13.62 9.08-13.62s.18 2 2.92 6.18c-3.6-11.2 5.96-25.03 8.5-29.73 3.98-1.27 4.27-6.4 4.27-6.4.26-7.9-3.28-13.63-6.7-17.05 2.46 3 3.25 7.54 3.37 11.7v.02c0 .47 0 .93 0 1.4-.12 3.43-1.16 8.18-3.38 8.18v.03c-2.28-.1-5.1.4-7.63 1.18l-5.6 1.34s2.98-.13 4.6 1.25c-1.8 2.9-5.78 6.53-10.22 8.58-6.45 3-8.3-2.96-5.03-6.84.8-.94 1.62-1.74 2.38-2.4-.5-.5-.8-1.2-.88-2.06 0 0 0 0 0-.02-.46-1.97-.2-4.54 2.6-8.62.54-.86 1.2-1.75 2-2.65.02-.04.04-.07.07-.1.03-.04.07-.08.1-.12.02-.02.04-.04.06-.06.2-.23.42-.45.64-.67 3.34-3.4 8.6-6.96 16.9-10.15C64.4 43.68 67.94 41 67.94 41c1.07-1.1 2.94-2.45 3.63-2.8-5.05-8.77-6.07-21.15-4.75-24.5-.1.2-.2.38-.3.57.5-1.14.83-1.5 1.34-2.1 1.38-1.64 6.06-2.5 7.74.96.9 1.84 1.06 4.23 1.03 6.02-3.7-.2-7.06 4.04-7.06 4.04s3.07-1.46 6.88-1.5c0 0 1 .9 2.28 2.56-1.7 3.2-4.52 10.02-2.5 17.16.35 1.4.86 2.62 1.5 3.65.02.05.04.1.07.14.05.07.1.13.14.2 3.37 5.06 9.54 5.66 9.54 5.66-2.9-1.45-5.27-3.76-6.8-6.56-.82-1.5-1.3-2.77-1.6-3.77-1.64-6.3.77-10 2.14-12.47 3.17-4.9 8.95-7.9 15.15-7.18 8.72 1 14.97 8.86 13.98 17.57-.6 5.32-3.78 9.72-8.15 12.12 1.05 2.84-.07 6.28-.07 6.28 2.64 3.32 2.76 5.23 2.67 7-3.36-.55-6.62 1.7-6.62 1.7s6.48-1.53 10.24 1.82c2.44 2.64 4.08 5 5.05 6.77 1.4 2.5 7.86 2.68 7.12 7.2-.74 4.5-5.68 4.53-13.4-.57M69.56 0C31.15 0 0 31.15 0 69.57c0 38.42 31.15 69.57 69.57 69.57 38.42 0 69.57-31.15 69.57-69.57C139.14 31.15 108 0 69.57 0M73.8 51.7c.8-.82.8-2.14 0-2.95-.82-.82-2.14-.82-2.95 0-.82.8-.82 2.13 0 2.94.8.8 2.13.8 2.95 0M66.45 53.15c-.82.8-.82 2.13 0 2.95.8.8 2.13.8 2.94 0 .8-.82.8-2.14 0-2.95-.82-.8-2.14-.8-2.95 0"/><path d="M79.23 54.23c-1.27-1.27-3.34-1.27-4.6 0l-2.72 2.7c-1.27 1.3-1.27 3.35 0 4.63l3 2.97c1.26 1.28 3.32 1.28 4.6 0l2.7-2.7c1.28-1.28 1.28-3.35 0-4.62l-2.97-2.97zM95.76 41.44c-2.15-2.57 1.87-7.25 4.4-4.46 4.64 5.15-2.25 7.04-4.4 4.46m9.24 2.7c3.45-6.56-1.42-10.4-4.77-13.53-5.36-5.03-10.7-7.2-16.8-.23-6.1 6.98-2.24 15.07 3.35 19.06 5.58 4 14.78 1.25 18.22-5.3"/></svg></a>            </div>
+            <nav class="overlay-menu">
+                
+<ul class="tree">
+                <li>
+      <a href="/" class="">
+        Home
+      </a>
+          </li>
+          <li>
+      <a href="/examples" class="">
+        Examples
+      </a>
+          </li>
+          <li>
+      <a href="/documentation" class="">
+        Documentation
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/technical-overview" class="">
+        Technical Overview
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/client-documentation" class="">
+        Client Documentation
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/server-documentation" class="">
+        Server Documentations
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/server-documentation/client-initiated-control-functions" class="">
+        Client Initiated Control Functions
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/server-documentation/server-initiated-control-functions" class="">
+        Server Initiated Control Functions
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/documentation/plugins" class="">
+        Corelink Plugins
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/protocol-documentation" class="">
+        Protocol Documentation
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/protocol-documentation/control-stream-protocol" class="">
+        Control Stream Protocol
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/protocol-documentation/data-stream-protocol" class="">
+        Data Stream Protocol
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/next-steps" class="">
+        Next Steps
+      </a>
+            <ul>
+                    <li>
+      <a href="/next-steps/get-started" class="">
+        Get Started
+      </a>
+          </li>
+          <li>
+      <a href="/next-steps/contributing-to-corelink" class="">
+        Contributing to Corelink
+      </a>
+          </li>
+          <li>
+      <a href="/next-steps/naming-convention-guidelines" class="">
+        Naming Convention Guidelines
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/about-us" class="active">
+        About Us
+      </a>
+            <ul>
+                    <li>
+      <a href="/about-us/team" class="active">
+        Team
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/collaborators" class="">
+        Collaborators
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/support" class="">
+        Support
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/contact-us" class="">
+        Contact Us
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+  
+</ul>
+
+            </nav>
+        </div>
+    </div>
+    
+    <script src="/assets/afd4d2fb3a586ceca6bbbebb09849a16.js"></script>
+
+
+</body>
+</html>

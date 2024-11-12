@@ -1,0 +1,2717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Client Initiated Control Functions | Corelink</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="GravCMS" />
+    <meta name="description" content="Corelink real-time framework" />
+
+    <link rel="icon" type="image/png" href="/user/themes/corelink-adapted-theme/images/favicon.png" />
+    <link rel="canonical" href="https://corelink.hpc.nyu.edu/documentation/server-documentation/client-initiated-control-functions" />
+
+                        
+            
+    <link href="/user/plugins/diagrams/css/mermaid.css" type="text/css" rel="stylesheet">
+<link href="/user/plugins/markdown-notices/assets/notices.css" type="text/css" rel="stylesheet">
+<link href="/user/plugins/form/assets/form-styles.css" type="text/css" rel="stylesheet">
+<link href="/user/plugins/youtube/css/youtube.css" type="text/css" rel="stylesheet">
+<link href="/user/plugins/login/css/login.css" type="text/css" rel="stylesheet">
+<link href="/user/themes/quark/css-compiled/spectre.min.css" type="text/css" rel="stylesheet">
+<link href="/user/themes/quark/css-compiled/theme.min.css" type="text/css" rel="stylesheet">
+<link href="/user/themes/quark/css/custom.css" type="text/css" rel="stylesheet">
+<link href="/user/themes/quark/css/line-awesome.min.css" type="text/css" rel="stylesheet">
+<style>
+table, td, th {
+  border: 1px solid #DDDDDD;
+  border-collapse: collapse;
+  padding:5px;
+  vertical-align: top;
+  word-wrap:break-word;
+  table-layout:fixed;
+  width: 100%
+}
+th {
+    background-color: #DDDDDD
+}
+tr:hover {
+   background-color: #ffff99;
+}
+
+h5 {
+    margin-top:15px;
+}
+
+.image-left {
+    float: left;
+    vertical-align: top;
+    margin: 7px 20px 20px 0px;
+}
+</style>
+
+    <script src="/assets/a018ad80f7c589bc0d309c3556944726.js"></script>
+<script>
+$(document).ready(function() {
+                    mermaid.initialize({startOnLoad:true});
+                    mermaid.ganttConfig = {
+                      axisFormatter: [["%d-%m-%Y", function (d){return d.getDay() == 1;}]]
+                    };
+
+                    $(".diagram").sequenceDiagram({theme: 'simple'});
+
+                    var parent = document.getElementsByClassName("flow");
+                    for(var i=0;i<parent.length;i++) {
+                        var data = parent[i].innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+                        parent[i].innerHTML = "";
+                        var chart = flowchart.parse(data);
+                        chart.drawSVG('canvas_'+i, {
+                            'font-size': 14,
+                            'font-color': 'black',
+                            'line-color': 'black',
+                            'element-color': 'black',
+                            'yes-text': 'yes',
+                            'no-text': 'no',
+
+                            // More informations : http://flowchart.js.org
+                            'flowstate' : {
+                                'simple': {'fill' : '#FFFFFF'},
+                                'positive': {'fill' : '#387EF5'},
+                                'success': { 'fill' : '#9FF781'},
+                                'invalid': {'fill' : '#FA8258'},
+                                'calm': {'fill' : '#11C1F3'},
+                                'royal': {'fill' : '#CF86E9'},
+                                'energized': {'fill' : 'F3FD60'},
+                            }
+                        });
+                    }
+                 });
+</script>
+
+</head>
+<body id="top" class=" header-fixed header-animated sticky-footer">
+    <div id="page-wrapper">
+            <section id="header" class="section">
+            <section class="container grid-lg">
+                <nav class="navbar">
+                    <section class="navbar-section logo">
+                        <a href="/" class="navbar-brand mr-10">
+    <img src="/user/themes/corelink-adapted-theme/images/logo/Logo.svg" alt="Corelink" />
+</a>                    </section>
+                    <section class="navbar-section desktop-menu">
+
+                        <nav class="dropmenu animated">
+                                                    
+<ul >
+                <li>
+      <a href="/" class="">
+        Home
+      </a>
+          </li>
+          <li>
+      <a href="/examples" class="">
+        Examples
+      </a>
+          </li>
+          <li>
+      <a href="/documentation" class="active">
+        Documentation
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/technical-overview" class="">
+        Technical Overview
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/client-documentation" class="">
+        Client Documentation
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/server-documentation" class="active">
+        Server Documentations
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/server-documentation/client-initiated-control-functions" class="active">
+        Client Initiated Control Functions
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/server-documentation/server-initiated-control-functions" class="">
+        Server Initiated Control Functions
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/documentation/plugins" class="">
+        Corelink Plugins
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/protocol-documentation" class="">
+        Protocol Documentation
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/protocol-documentation/control-stream-protocol" class="">
+        Control Stream Protocol
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/protocol-documentation/data-stream-protocol" class="">
+        Data Stream Protocol
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/next-steps" class="">
+        Next Steps
+      </a>
+            <ul>
+                    <li>
+      <a href="/next-steps/get-started" class="">
+        Get Started
+      </a>
+          </li>
+          <li>
+      <a href="/next-steps/contributing-to-corelink" class="">
+        Contributing to Corelink
+      </a>
+          </li>
+          <li>
+      <a href="/next-steps/naming-convention-guidelines" class="">
+        Naming Convention Guidelines
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/about-us" class="">
+        About Us
+      </a>
+            <ul>
+                    <li>
+      <a href="/about-us/team" class="">
+        Team
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/collaborators" class="">
+        Collaborators
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/support" class="">
+        Support
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/contact-us" class="">
+        Contact Us
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+  
+</ul>
+
+                                                </nav>
+
+                        
+                    </section>
+                </nav>
+            </section>
+        </section>
+        <div class="mobile-menu">
+            <div class="button_container" id="toggle">
+                <span class="top"></span>
+                <span class="middle"></span>
+                <span class="bottom"></span>
+            </div>
+        </div>
+    
+    
+        <section id="start">
+                    <section id="body-wrapper" class="section">
+                <section class="container grid-lg">
+                                            
+                                            <h1>Client Initiated Control Functions</h1>
+<h2>auth</h2>
+<p>authenticate a user</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">auth</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">username</td>
+<td style="text-align: left;">User name to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">Testuser</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">password</td>
+<td style="text-align: left;">Password for this user</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">Testpassword</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">If no username or password are given an app can authenticate with this token otherwise it can be omitted or left empty</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">IP</td>
+<td style="text-align: left;">source IP of the client</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>keepAlive</h2>
+<p>ping the server to keep alive</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">keepAlive</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>listFunctions</h2>
+<p>list available client functions</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">listFunctions</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">functionList</td>
+<td style="text-align: left;">list of functions</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">auth,keepAlive,listFunctions,listServerFunctions,describeFunction,describeServerFunction,listWorkspaces,addWorkspace,setDefaultWorkspace,getDefaultWorkspace,rmWorkspace,addUser,password,rmUser,listUsers,addGroup,addUserGroup,rmUserGroup,changeOwner,rmGroup,listGroups,sender,listStreams,streamInfo,receiver,subscribe,unsubscribe,setConfig,disconnect,expire</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>listServerFunctions</h2>
+<p>list available server functions</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">listServerFunctions</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">functionList</td>
+<td style="text-align: left;">list of server functions</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">update,subscriber,stale,dropped</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>describeFunction</h2>
+<p>retrieve client initiated function description</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">describeFunction</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">functionName</td>
+<td style="text-align: left;">function to get info about</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">listFunctions</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">description</td>
+<td style="text-align: left;">information about the function</td>
+<td style="text-align: center;">object</td>
+<td style="text-align: left;">[object Object]</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>describeServerFunction</h2>
+<p>retrieve description of server initiated function</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">describeServerFunction</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">functionName</td>
+<td style="text-align: left;">server function to get info about</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">update</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">description</td>
+<td style="text-align: left;">information about the function</td>
+<td style="text-align: center;">object</td>
+<td style="text-align: left;">[object Object]</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>listWorkspaces</h2>
+<p>list existing workspaces</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">listWorkspaces</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">workspaceList</td>
+<td style="text-align: left;">array of available workspaces</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;">Log,Holodeck,Chalktalk,Infinite</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>addWorkspace</h2>
+<p>add a new workspace</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">addWorkspace</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">workspace</td>
+<td style="text-align: left;">name of the workspace</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">newworkspace</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>setDefaultWorkspace</h2>
+<p>set a default workspace</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">setDefaultWorkspace</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">workspace</td>
+<td style="text-align: left;">name of the workspace</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">newworkspace</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>getDefaultWorkspace</h2>
+<p>get a default workspace</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">getDefaultWorkspace</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">workspace</td>
+<td style="text-align: left;">the default workspace or empty if no default workspace is set</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">newworkspace</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>rmWorkspace</h2>
+<p>remove an existing workspace</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">rmWorkspace</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">workspace</td>
+<td style="text-align: left;">name of the workspace</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">newworkspace</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>addUser</h2>
+<p>add a new User</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">addUser</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">username</td>
+<td style="text-align: left;">name of the user</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">newuser</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">password</td>
+<td style="text-align: left;">password of the user</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">admin</td>
+<td style="text-align: left;">user is an admin</td>
+<td style="text-align: center;">boolean</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">first</td>
+<td style="text-align: left;">first name of the user</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">firstname</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">last</td>
+<td style="text-align: left;">last name of the user</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">lastname</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">email</td>
+<td style="text-align: left;">email of the user</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">test@gmail.com</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>password</h2>
+<p>change password for an existing User</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">password</td>
+<td style="text-align: left;">new password of the User</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">Testpassword</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>rmUser</h2>
+<p>remove an existing User</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">rmUser</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">username</td>
+<td style="text-align: left;">name of the User</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">newuser</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>listUsers</h2>
+<p>list existing users</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">listUsers</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">userList</td>
+<td style="text-align: left;">array of available users</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>addGroup </h2>
+<p>add a new Group</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">addGroup</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">group</td>
+<td style="text-align: left;">name of the new Group</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">group</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>addUserGroup </h2>
+<p>add a user to a Group</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">addUserGroup</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">group</td>
+<td style="text-align: left;">name of the  Group</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">group</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">user</td>
+<td style="text-align: left;">name user attached to the Group</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">admin</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>rmUserGroup </h2>
+<p>remove a user to a Group</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">rmUserGroup</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">group</td>
+<td style="text-align: left;">name of the Group</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">group</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">user</td>
+<td style="text-align: left;">user that need to remove from that Group</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">admin</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>changeOwner</h2>
+<p>change an existing Group ownership</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">changeOwner</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">group</td>
+<td style="text-align: left;">name of the Group</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">group</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">username</td>
+<td style="text-align: left;">name of the new owner</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">Testuser</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>rmGroup</h2>
+<p>remove an existing Group</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">rmGroup</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">group</td>
+<td style="text-align: left;">name of the Group</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">group</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>listGroups</h2>
+<p>list existing Group</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">listGroups</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">listGroup</td>
+<td style="text-align: left;">array of available Group</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>sender</h2>
+<p>register a new stream as sender</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">sender</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">workspace</td>
+<td style="text-align: left;">name of the workspace</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">Holodeck</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">senderID</td>
+<td style="text-align: left;">if one wishes to update a stream, set the existing streamID</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">from</td>
+<td style="text-align: left;">apps can set a corresponding stream this data came from</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">proto</td>
+<td style="text-align: left;">Protocol for the stream to use (udp/tcp/ws)</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">udp</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">IP</td>
+<td style="text-align: left;">IP address from which the connection will be made (this is usually the IP one gets from the auth function)</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">port</td>
+<td style="text-align: left;">Port from which the connection will be made, keep the port 0 when the client is behind a firewall.</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">type</td>
+<td style="text-align: left;">Set the type of stream (e.g. 3d, audio)</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">3d</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">alert</td>
+<td style="text-align: left;">alerts the client if a new receiver subscribes to this stream</td>
+<td style="text-align: center;">boolen</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">meta</td>
+<td style="text-align: left;">custom metadata specific to this stream to send to receivers</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">Token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">streamID</td>
+<td style="text-align: left;">ID of the new stream</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">IP</td>
+<td style="text-align: left;">IP address to which the connection shall be made</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+<tr>
+<td style="text-align: center;">port</td>
+<td style="text-align: left;">Port to which the connection shall be made</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">MTU</td>
+<td style="text-align: left;">Size of the MTU incl. header. 0 is unlimited</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>listStreams</h2>
+<p>list existing stream</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">listStreams</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">workspaces</td>
+<td style="text-align: left;">Name of the workspace (or an array thereof) see the streams of. Leave empty or omit to search all workspaces.</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;">Holodeck</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">types</td>
+<td style="text-align: left;">Restict listing to a particular type of stream (e.g. 3d, audio). If the parameter is omitted all stream types will be listed</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;">3d</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">senderList</td>
+<td style="text-align: left;">array of streamID/user/apps/type/meta/workspace of the streams that will be sent</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>streamInfo</h2>
+<p>get information about a stream</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">streamInfo</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">streamID</td>
+<td style="text-align: left;">ID of the stream to get information about</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">$$sender.streamID</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">info</td>
+<td style="text-align: left;">information about the stream(streamID/user/apps/type/meta/workspace)</td>
+<td style="text-align: center;">object</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>receiver</h2>
+<p>register a new stream as receiver</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">receiver</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">workspace</td>
+<td style="text-align: left;">name of the workspace</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">Holodeck</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">receiverID</td>
+<td style="text-align: left;">if one wishes to update a stream, set the existing streamID</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">streamIDs</td>
+<td style="text-align: left;">array of stream IDs to receive. if the argument is omitted all streams of a type will be sent.</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">proto</td>
+<td style="text-align: left;">Protocol for the stream to use (udp/tcp/ws)</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">udp</td>
+<td style="text-align: left;">udp</td>
+</tr>
+<tr>
+<td style="text-align: center;">type</td>
+<td style="text-align: left;">Restict reception to a particular type of stream (e.g. 3d, audio). An empty array or ommiting the value will receive all streams.</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;">3d</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">alert</td>
+<td style="text-align: left;">alerts the client if a new stream of this type is created</td>
+<td style="text-align: center;">boolen</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">echo</td>
+<td style="text-align: left;">recevies streams of the same user if true</td>
+<td style="text-align: center;">boolen</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">IP</td>
+<td style="text-align: left;">IP address from which the connection will be made (this is usually the IP one gets from the auth function)</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">port</td>
+<td style="text-align: left;">Port from which the connection will be made. This should be 0 for for cases when the client is behind a firewall.</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">meta</td>
+<td style="text-align: left;">custom metadata specific to this stream to send to senders</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user or app to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">streamID</td>
+<td style="text-align: left;">new streamID that designates the receiver</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">streamList</td>
+<td style="text-align: left;">array of streamID/user/apps [array of app names]/type/meta of the streams that will be sent</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">IP</td>
+<td style="text-align: left;">IP to which the connection of the client shall be made</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+<tr>
+<td style="text-align: center;">port</td>
+<td style="text-align: left;">Port to which the connection will be made</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">proto</td>
+<td style="text-align: left;">Protocol for the stream to use (udp/tcp/ws)</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">udp</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">MTU</td>
+<td style="text-align: left;">Size of the MTU incl. header. 0 is unlimited</td>
+<td style="text-align: center;">integer</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>subscribe</h2>
+<p>subscribe additional streams to an existing receiver</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">subscribe</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">receiverID</td>
+<td style="text-align: left;">set the existing receiver streamID</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">$$receiver.streamID</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">streamID</td>
+<td style="text-align: left;">array of stream IDs to receive. new streams will be added to existing already subscribed streams.</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;">$$sender.streamID</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">streamList</td>
+<td style="text-align: left;">array of streamID/user/apps/type/meta of the streams that will be sent</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>unsubscribe</h2>
+<p>unsubscribe streams from an existing receiver</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">unsubscribe</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">receiverID</td>
+<td style="text-align: left;">set the existing receiver streamID</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">$$receiver.streamID</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">streamID</td>
+<td style="text-align: left;">array of stream IDs to unsubscribe.</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;">$$sender.streamID</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">streamList</td>
+<td style="text-align: left;">array of streamID of the streams that were deleted</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>setConfig</h2>
+<p>set a server config</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">setConfig</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">config</td>
+<td style="text-align: left;">the parameter that should be set</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">debug</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">context</td>
+<td style="text-align: left;">context that this cofiguration applies to global (server global settings), profile (global user specific settings), app (app global settings), or private (app user specific settings), if omitted or empty it is a global configuration parameter</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">global</td>
+</tr>
+<tr>
+<td style="text-align: center;">app</td>
+<td style="text-align: left;">an app name that this cofiguration applies to, can be omitted or empty for global or profile configuration parameters</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">user</td>
+<td style="text-align: left;">an user name that this cofiguration applies to, can be omitted or empty for global or app configuration parameters, only an admin can set this parameter, otherwise the logged in username will be taken.</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">value</td>
+<td style="text-align: left;">value to apply to the parameter, all parameters are stored as strings, but are applied in the defined type</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">true</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>disconnect</h2>
+<p>disconnect a stream or several streams for the logged in user</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">disconnect</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">workspaces</td>
+<td style="text-align: left;">name of the workspace to search for source streams (an empty array indicates all workspaces), it is ignored when specific streamIDs are given</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">types</td>
+<td style="text-align: left;">source stream types to search (an empty array indicates all stream types), it is ignored when specific streamIDs are given</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">streamIDs</td>
+<td style="text-align: left;">ID's of the streams to discard (if an empty array is given all source streams that match workspace and type will be discarded)</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token for the user to authenticate</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">streamList</td>
+<td style="text-align: left;">streams that were disconnected</td>
+<td style="text-align: center;">array</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+<h2>expire</h2>
+<p>expire a user session</p>
+<h5>Request:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">arguments</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: left;">default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">function</td>
+<td style="text-align: left;">function to select and run</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">expire</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">token</td>
+<td style="text-align: left;">token of the user session to expire</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h5>Response:</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">responses</th>
+<th style="text-align: left;">description</th>
+<th style="text-align: center;">type</th>
+<th style="text-align: left;">sample</th>
+<th style="text-align: center;">optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">statusCode</td>
+<td style="text-align: left;">result code of the function</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: center;">message</td>
+<td style="text-align: left;">optional status message</td>
+<td style="text-align: center;">string</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;">true</td>
+</tr>
+</tbody>
+</table>
+
+                </section>
+            </section>
+                </section>
+
+    </div>
+
+            <section id="footer" class="section bg-gray">
+    <section class="container grid-lg">
+        <p><a href="https://corelink.hpc.nyu.edu/">Corelink</a> - Real Time Networking for Research.</p>
+    </section>
+</section>
+    
+        <div class="mobile-container">
+        <div class="overlay" id="overlay">
+            <div class="mobile-logo">
+                <a href="/" class="navbar-brand mr-10">
+  <svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" viewBox="0 0 504 140" clip-rule="evenodd"><path d="M235.83 71.56h-7.98c-1.2 0-2.2 1-2.2 2.2V89.1l-.15.13c-4.7 3.96-10.64 6.14-16.72 6.14-14.36 0-26.04-11.68-26.04-26.04s11.68-26.04 26.04-26.04c5.58 0 10.92 1.76 15.44 5.1.87.66 2.1.57 2.86-.2l5.7-5.7c.44-.44.67-1.05.63-1.68-.02-.62-.32-1.2-.82-1.6-6.76-5.35-15.2-8.3-23.8-8.3-21.18 0-38.42 17.23-38.42 38.4 0 21.2 17.24 38.42 38.42 38.42 10.93 0 21.4-4.7 28.7-12.9.35-.4.55-.93.55-1.47v-19.6c0-1.22-.98-2.2-2.2-2.2M502.8 34.44c-.4-.6-1.1-.98-1.84-.98h-8.7c-.87 0-1.66.52-2 1.32l-24.5 56.84-24.9-56.85c-.36-.8-1.15-1.3-2.02-1.3h-8.72c-.74 0-1.44.36-1.84.98-.4.62-.48 1.4-.17 2.1l30.2 68.85c.34.8 1.13 1.32 2 1.32h11c.88 0 1.67-.53 2.02-1.33l29.66-68.87c.3-.68.22-1.47-.2-2.1"/><path d="M388.68 34.77c-.35-.8-1.14-1.32-2-1.32h-11c-.88 0-1.67.53-2.02 1.33L344 103.64c-.3.68-.22 1.47.18 2.08.4.62 1.1 1 1.84 1h8.7c.86 0 1.66-.53 2-1.33l24.5-56.86 24.9 56.86c.36.8 1.15 1.32 2.02 1.32h8.72c.74 0 1.44-.38 1.84-1 .4-.62.47-1.4.17-2.1l-30.2-68.85zM309.2 81.52l.47-.22c8.68-4.2 14.28-13.1 14.28-22.67 0-13.88-11.3-25.18-25.17-25.18H266.9c-1.2 0-2.2 1-2.2 2.2v68.86c0 1.23 1 2.22 2.2 2.22h8c1.2 0 2.2-1 2.2-2.2V45.8h21.68c7.05 0 12.8 5.75 12.8 12.8 0 5.9-4 11-9.73 12.42-1.04.26-2.07.4-3.07.4h-7.98c-.83 0-1.6.46-1.96 1.2-.38.73-.3 1.62.2 2.3l22.6 30.87c.42.58 1.08.92 1.78.92h9.9c.84 0 1.6-.47 1.97-1.2.37-.75.3-1.64-.2-2.3l-15.9-21.7zM107.2 80.97c-7.26-4.8-11.4-8.85-15.02-16.1-2.47 4.97-8.24 12.37-17.96 18.2-4.86 15.1-27.96 44-35.43 39.9-2.22-1.2-2.64-2.8-2.15-4.45.54-4.13 9.08-13.62 9.08-13.62s.18 2 2.92 6.18c-3.6-11.2 5.96-25.03 8.5-29.73 3.98-1.27 4.27-6.4 4.27-6.4.26-7.9-3.28-13.63-6.7-17.05 2.46 3 3.25 7.54 3.37 11.7v.02c0 .47 0 .93 0 1.4-.12 3.43-1.16 8.18-3.38 8.18v.03c-2.28-.1-5.1.4-7.63 1.18l-5.6 1.34s2.98-.13 4.6 1.25c-1.8 2.9-5.78 6.53-10.22 8.58-6.45 3-8.3-2.96-5.03-6.84.8-.94 1.62-1.74 2.38-2.4-.5-.5-.8-1.2-.88-2.06 0 0 0 0 0-.02-.46-1.97-.2-4.54 2.6-8.62.54-.86 1.2-1.75 2-2.65.02-.04.04-.07.07-.1.03-.04.07-.08.1-.12.02-.02.04-.04.06-.06.2-.23.42-.45.64-.67 3.34-3.4 8.6-6.96 16.9-10.15C64.4 43.68 67.94 41 67.94 41c1.07-1.1 2.94-2.45 3.63-2.8-5.05-8.77-6.07-21.15-4.75-24.5-.1.2-.2.38-.3.57.5-1.14.83-1.5 1.34-2.1 1.38-1.64 6.06-2.5 7.74.96.9 1.84 1.06 4.23 1.03 6.02-3.7-.2-7.06 4.04-7.06 4.04s3.07-1.46 6.88-1.5c0 0 1 .9 2.28 2.56-1.7 3.2-4.52 10.02-2.5 17.16.35 1.4.86 2.62 1.5 3.65.02.05.04.1.07.14.05.07.1.13.14.2 3.37 5.06 9.54 5.66 9.54 5.66-2.9-1.45-5.27-3.76-6.8-6.56-.82-1.5-1.3-2.77-1.6-3.77-1.64-6.3.77-10 2.14-12.47 3.17-4.9 8.95-7.9 15.15-7.18 8.72 1 14.97 8.86 13.98 17.57-.6 5.32-3.78 9.72-8.15 12.12 1.05 2.84-.07 6.28-.07 6.28 2.64 3.32 2.76 5.23 2.67 7-3.36-.55-6.62 1.7-6.62 1.7s6.48-1.53 10.24 1.82c2.44 2.64 4.08 5 5.05 6.77 1.4 2.5 7.86 2.68 7.12 7.2-.74 4.5-5.68 4.53-13.4-.57M69.56 0C31.15 0 0 31.15 0 69.57c0 38.42 31.15 69.57 69.57 69.57 38.42 0 69.57-31.15 69.57-69.57C139.14 31.15 108 0 69.57 0M73.8 51.7c.8-.82.8-2.14 0-2.95-.82-.82-2.14-.82-2.95 0-.82.8-.82 2.13 0 2.94.8.8 2.13.8 2.95 0M66.45 53.15c-.82.8-.82 2.13 0 2.95.8.8 2.13.8 2.94 0 .8-.82.8-2.14 0-2.95-.82-.8-2.14-.8-2.95 0"/><path d="M79.23 54.23c-1.27-1.27-3.34-1.27-4.6 0l-2.72 2.7c-1.27 1.3-1.27 3.35 0 4.63l3 2.97c1.26 1.28 3.32 1.28 4.6 0l2.7-2.7c1.28-1.28 1.28-3.35 0-4.62l-2.97-2.97zM95.76 41.44c-2.15-2.57 1.87-7.25 4.4-4.46 4.64 5.15-2.25 7.04-4.4 4.46m9.24 2.7c3.45-6.56-1.42-10.4-4.77-13.53-5.36-5.03-10.7-7.2-16.8-.23-6.1 6.98-2.24 15.07 3.35 19.06 5.58 4 14.78 1.25 18.22-5.3"/></svg></a>            </div>
+            <nav class="overlay-menu">
+                
+<ul class="tree">
+                <li>
+      <a href="/" class="">
+        Home
+      </a>
+          </li>
+          <li>
+      <a href="/examples" class="">
+        Examples
+      </a>
+          </li>
+          <li>
+      <a href="/documentation" class="active">
+        Documentation
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/technical-overview" class="">
+        Technical Overview
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/client-documentation" class="">
+        Client Documentation
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/server-documentation" class="active">
+        Server Documentations
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/server-documentation/client-initiated-control-functions" class="active">
+        Client Initiated Control Functions
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/server-documentation/server-initiated-control-functions" class="">
+        Server Initiated Control Functions
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/documentation/plugins" class="">
+        Corelink Plugins
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/protocol-documentation" class="">
+        Protocol Documentation
+      </a>
+            <ul>
+                    <li>
+      <a href="/documentation/protocol-documentation/control-stream-protocol" class="">
+        Control Stream Protocol
+      </a>
+          </li>
+          <li>
+      <a href="/documentation/protocol-documentation/data-stream-protocol" class="">
+        Data Stream Protocol
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/next-steps" class="">
+        Next Steps
+      </a>
+            <ul>
+                    <li>
+      <a href="/next-steps/get-started" class="">
+        Get Started
+      </a>
+          </li>
+          <li>
+      <a href="/next-steps/contributing-to-corelink" class="">
+        Contributing to Corelink
+      </a>
+          </li>
+          <li>
+      <a href="/next-steps/naming-convention-guidelines" class="">
+        Naming Convention Guidelines
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+          <li>
+      <a href="/about-us" class="">
+        About Us
+      </a>
+            <ul>
+                    <li>
+      <a href="/about-us/team" class="">
+        Team
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/collaborators" class="">
+        Collaborators
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/support" class="">
+        Support
+      </a>
+          </li>
+          <li>
+      <a href="/about-us/contact-us" class="">
+        Contact Us
+      </a>
+          </li>
+  
+      </ul>
+          </li>
+  
+</ul>
+
+            </nav>
+        </div>
+    </div>
+    
+    <script src="/assets/afd4d2fb3a586ceca6bbbebb09849a16.js"></script>
+
+
+</body>
+</html>
